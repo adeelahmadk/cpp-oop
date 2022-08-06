@@ -14,10 +14,10 @@
     3. [Class Template Specializations](#Class-Template-Specializations)
     4. [Nontype Parameters and Default Types](#Nontype-Parameters-and-Default-Types)
     5. [Class Template Specializations Summarized](#Class-Template-Specializations-Summarized)
-    6. [Limitations of Templates in C++03](#Limitations-of-Templates-in-C++03)
+    6. [Limitations of Templates in C++03](#Limitations-of-Templates-in-C03)
 4. [Exception Handling](#Exception-Handling)
-    1. [Exceptions in C++ library](#Exceptions-in-C++-library)
-    2. [Extending C++ Exception Hierarchy](#Extending-C++-Exception-Hierarchy)
+    1. [Exceptions in C++ library](#Exceptions-in-C-library)
+    2. [Extending C++ Exception Hierarchy](#Extending-C-Exception-Hierarchy)
 5. [Stream IO](#Stream-IO)
     1. [Stream Output](#Stream-Output)
     2. [Stream Input](#Stream-Input)
@@ -62,15 +62,15 @@ Encapsulation is achieved when each object keeps its state **private**, inside a
 
 So, the object manages its own state via methods — and no other class  can touch it unless explicitly allowed. If you want to communicate with  the object, you should use the methods provided. But (by default), you  can’t change the state.
 
-![Encapsulation](./assets/encap_cat.png)
+![Encapsulation](./assets/encap_cat_bg.png)
 
 
 
 ### Abstraction
 
-Abstraction can be thought of as a natural extension of encapsulation. Applying abstraction means that each object should **only** expose a high-level mechanism for using it. This mechanism should hide internal implementation details. It should only reveal operations relevant for the other objects./home/adeel/workspace/learn/cxx/cpp-oop/assets/abstract_phone.png
+Abstraction can be thought of as a natural extension of encapsulation. Applying abstraction means that each object should **only** expose a high-level mechanism for using it. This mechanism should hide internal implementation details. It should only reveal operations relevant for the other objects.
 
-![](./assets/abstract_phone.png)
+![Abstraction](./assets/abstract_phone_bg.png)
 
 
 
@@ -80,13 +80,13 @@ Inheritance is the ability of one object to acquire some/all properties of anoth
 
 Objects are often very similar and share common logic. But they’re not **entirely** the same. So how do we **reuse** the common logic and extract the unique logic into a separate class? One way to achieve this is **inheritance**. It means that you create a (child) class by deriving from another (parent) class. This way, we form a hierarchy. The child class reuses all fields and methods of the parent class (common part) and can implement its own (unique part).
 
-![Inheritance](./assets/inherit_person.png)
+![Inheritance](./assets/inherit_person_bg.png)
 
 
 
 ### Polymorphism
 
-Polymorphism means designing objects to **share behaviors**. Using inheritance, objects can override shared parent behaviors, with  specific child behaviors. Polymorphism allows the same method to execute diffe/home/adeel/workspace/learn/cxx/cpp-oop/assets/abstract_phone.pngrent behaviors in two ways: method overriding and method  overloading.
+Polymorphism means designing objects to **share behaviors**. Using inheritance, objects can override shared parent behaviors, with  specific child behaviors. Polymorphism allows the same method to execute different behaviors in two ways: method overriding and method  overloading.
 
 Runtime polymorphism uses method overriding. In method overriding, a  child class can provide a different implementation than its parent  class.
 
@@ -100,7 +100,7 @@ Choosing the appropriate function to call at execution time (rather than at comp
 
 Once a function is defined as `virtual` in the base class, its overridden copy in the derived class retains it's `virtual` status even if not declared explicitly.
 
-![Polymorphism](./assets/polymorph_shape.png)
+![Polymorphism](./assets/polymorph_shape_bg.png)
 
 [^ top](#Contents)
 
@@ -119,7 +119,7 @@ Most modern programming languages provide features to implement this paradigm ca
 
 ### Function Templates
 
-Overloaded functions normally perform similar or identical operations on different types of data. If the operations are identical for each type, they can be expressed more compactly and conveniently using function templates. Based on the argument types provided explicitly or inferred from calls to this function, the compiler generates separate source-code functions (i.e., function-template specializations) to handle each function call appropriately. All function-template definitions begin with keyword `template` followed by a list of **template parameters** to the function template enclosed in angle brackets ( `<` and `>` ); each template parameter that represents a type must be preceded by either of the interchangeable/home/adeel/workspace/learn/cxx/cpp-oop/assets/abstract_phone.png keywords `class` or `typename` , as in
+Overloaded functions normally perform similar or identical operations on different types of data. If the operations are identical for each type, they can be expressed more compactly and conveniently using function templates. Based on the argument types provided explicitly or inferred from calls to this function, the compiler generates separate source-code functions (i.e., function-template specializations) to handle each function call appropriately. All function-template definitions begin with keyword `template` followed by a list of **template parameters** to the function template enclosed in angle brackets ( `<` and `>` ); each template parameter that represents a type must be preceded by either of the interchangeable keywords `class` or `typename` , as in
 
 ```c++
 template< typename T >
@@ -1905,7 +1905,7 @@ C++ does not impose structure on a file. So the application that wants to use ra
 
 Figure illustrates C++’s view of a random-access file composed of fixed-length records (each record, in this case, is 100 bytes long). A random-access file is like a railroad train with many same-size cars—some empty and some with contents.
 
-![[todo: design figure]](/home/adeel/workspace/learn/cxx/cpp-oop/assets/random_access_file.png)
+![[todo: design figure]](./assets/random_access_file.png)
 
 Data can be inserted into a random-access file without destroying other data in the file. Data stored previously also can be updated or deleted without rewriting the entire file.
 
@@ -2623,6 +2623,8 @@ int main()
 2. [`std::cin` and handling invalid input](https://www.learncpp.com/cpp-tutorial/stdcin-and-handling-invalid-input/)
 
 
+
+[^ top](#Contents)
 
 ## Appendix
 
