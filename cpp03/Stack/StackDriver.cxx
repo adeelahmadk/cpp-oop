@@ -1,4 +1,4 @@
-// Fig. 14.3: fig14_03.cpp
+// StackDriver.cpp
 // Stack class template test program.
 #include <iostream>
 #include "Stack.h" // Stack class template definition

@@ -1,7 +1,6 @@
 // StackDriver.cxx
 // Stack class template test program.
 #include <iostream>
-/* #include <stdexcept> */
 #include "Stack.h" // Stack class template definitions
 using namespace std;
 

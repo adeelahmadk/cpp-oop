@@ -3,7 +3,6 @@
   * function definitions
   */
 #include <iostream>
-/* #include "utils.h" */
 #include "sorting.h"
 using namespace std;
 

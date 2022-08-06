@@ -3,7 +3,7 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include "../include/except.h"
+#include "except.h"
 
 template< typename T >
 class Stack
