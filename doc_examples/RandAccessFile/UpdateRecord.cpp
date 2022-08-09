@@ -36,7 +36,7 @@ int main()
 
         printRecordHeader();
         // print the current status of the record
-        printRecord( readRecord( fio, searchKey ) );
+        readRecord( fio, searchKey ).print();
 
         cout << endl;
         // ask a yes/no question
@@ -49,7 +49,7 @@ int main()
             {
                 cout << "Record after update:\n";
                 // print updated record
-                printRecord( readRecord( fio, searchKey ) );
+                readRecord( fio, searchKey ).print();
             }
             else
             {

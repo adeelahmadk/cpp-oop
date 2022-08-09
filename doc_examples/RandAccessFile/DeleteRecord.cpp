@@ -13,7 +13,7 @@ int main()
     int recordCount = 0,
         searchKey = 0;
     char choice = 0;
-    student rec;
+    Student rec;
 
     // open file to read and write binary data
     fstream fio( "students.bin", ios::in | ios::out | ios::binary );
@@ -40,7 +40,7 @@ int main()
             cout << "\nRecord you are about to delete: " << endl;
             printRecordHeader();
             // print the current status of the record
-            printRecord( rec );
+            rec.print();
 
             cout << endl;
             // ask a yes/no question
@@ -53,7 +53,7 @@ int main()
                 // delete the record
                 if( deleteRecord( fio, searchKey ) )
                 {
-                    cout << "Record deleted successfully!";
+                    cout << "Record deleted successfully!\n";
                 }
                 else
                 {

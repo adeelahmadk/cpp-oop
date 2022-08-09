@@ -12,7 +12,7 @@ int main()
     int recordCount = 0,
         searchKey = 0;
     char choice = 0;
-    student rec;
+    Student rec;
 
     // open file for reading binary data
     fstream fin( "students.bin", ios::in | ios::binary );
@@ -39,8 +39,9 @@ int main()
         }
         else
         {
+            printRecordHeader();
             // print the record
-            printRecord( rec );
+            rec.print();
         }
         cout << endl;
         // ask a yes/no question

@@ -26,9 +26,9 @@ int main()
     printRecordHeader();
     for( int recordNumber = 1; recordNumber <= recordCount; recordNumber++ )
     {
-        student rec = readRecord( fin, recordNumber );
+        Student rec = readRecord( fin, recordNumber );
         if( ! isDeletedRecord( rec ) )
-            printRecord( rec ); // print the record
+            rec.print();
 
     }
 

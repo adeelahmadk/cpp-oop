@@ -19,7 +19,7 @@ int main()
 
     const int recordCount = 5;
     // initialize records
-    student studentRecords[recordCount] = {
+    Student studentRecords[recordCount] = {
         /* this type of initialization is only
            possible at declaration time! */
         { 1, "Sqib Hameed",  83.50 },
@@ -34,7 +34,7 @@ int main()
         // write a record as array of byte sized data
         fout.write(
                 reinterpret_cast< char * >( &studentRecords[index] ),
-                sizeof( student )  // size of record to be written
+                sizeof( Student )  // size of record to be written
             );
     }
 
