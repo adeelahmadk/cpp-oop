@@ -2233,6 +2233,7 @@ bool updateRecord( fstream &ioFile, int recordNumber )
     student rec;
     string name;
     float score;
+  	int length;
 
     // position the get pointer
     ioFile.seekp( ( recordNumber - 1 ) * sizeof( student ) );
@@ -2246,8 +2247,15 @@ bool updateRecord( fstream &ioFile, int recordNumber )
                 "Enter name of the student: ",
                 NAME_LENGTH );
     }while( name.size() < 3 );
+    // calculate number of characters to copy to record's name field
+    length = name.length();
+    length = ( length < NAME_LENGTH ? length : NAME_LENGTH - 1 );
     // copy name from string object to record's name field
-    strncpy( rec.name, name.c_str(), NAME_LENGTH );
+    name.copy(
+            rec.name,
+            length
+        );
+    rec.name[ length ] = '\0';  // null terminate the character array
 
     // read score filed from the user
     do
@@ -2392,8 +2400,6 @@ int main()
 ```
 
 The real benefit of maintaining a random-access file is when we have to read a particular (nth) record.
-
- 
 
 ```cpp
 // search a record requested by the user

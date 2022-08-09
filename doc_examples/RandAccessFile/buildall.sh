@@ -1,21 +1,19 @@
 #!/usr/bin/env bash
 
-CXX=`which g++`
-if [ $? -ne 0 ]
-then
-    CXX=`which clang++`
-    [ $? -ne 0 ] && echo "error!" && return 1
-fi
+CWD=$(dirname `realpath $BASH_SOURCE`)
+[ -f $CWD"/../../.env.sh" ] && source $CWD"/../../.env.sh"
+[ -z "$BUILD_DIR" ] && BUILD_DIR="."
+[ -z "$CXX" ] && \
+    echo "$(basename $0): Set your C++ compiler in the CXX variable!" >& 2 && exit 1
 
-echo "my c++ compiler is: ${CXX}"
+echo "your c++ compiler is: $(basename $CXX)"
 echo "compiling .cpp files..."
-$CXX CreateRAFile.cpp -o CreateRAFile
-$CXX inputs.cpp record.cpp ReadRAFile.cpp -o ReadRAFile
-$CXX inputs.cpp record.cpp SearchRecord.cpp -o SearchRecord
-$CXX inputs.cpp record.cpp UpdateRecord.cpp -o UpdateRecord
-$CXX inputs.cpp record.cpp DeleteRecord.cpp -o DeleteRecord
+$CXX CreateRAFile.cpp -o $BUILD_DIR/CreateRAFile
+$CXX inputs.cpp record.cpp ReadRAFile.cpp -o $BUILD_DIR/ReadRAFile
+$CXX inputs.cpp record.cpp SearchRecord.cpp -o $BUILD_DIR/SearchRecord
+$CXX inputs.cpp record.cpp UpdateRecord.cpp -o $BUILD_DIR/UpdateRecord
+$CXX inputs.cpp record.cpp DeleteRecord.cpp -o $BUILD_DIR/DeleteRecord
 
-echo
-[ $? -ne 0 ] && echo "error in compiling files!" && return 1
+[ $? -ne 0 ] && echo "error compiling files!" && exit 1
 echo "successfully compiled all .cpp files..."
-return 0
+echo "executables palced in ${BUILD_DIR}"
