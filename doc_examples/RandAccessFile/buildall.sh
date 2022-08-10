@@ -8,7 +8,7 @@ CWD=$(dirname `realpath $BASH_SOURCE`)
 
 echo "your c++ compiler is: $(basename $CXX)"
 echo "compiling .cpp files..."
-$CXX CreateRAFile.cpp -o $BUILD_DIR/CreateRAFile
+$CXX inputs.cpp record.cpp CreateRAFile.cpp -o $BUILD_DIR/CreateRAFile
 $CXX inputs.cpp record.cpp ReadRAFile.cpp -o $BUILD_DIR/ReadRAFile
 $CXX inputs.cpp record.cpp SearchRecord.cpp -o $BUILD_DIR/SearchRecord
 $CXX inputs.cpp record.cpp UpdateRecord.cpp -o $BUILD_DIR/UpdateRecord

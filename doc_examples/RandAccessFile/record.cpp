@@ -8,21 +8,25 @@
 #include "record.h"
 
 // null Student object, usefull to erase
-// a record in the random-access file 
+// a record in the random-access file
 Student nullStudentRecord;
+
+/**
+ *  Student class member functions
+ */
 
 // default constructor
 Student::Student( int id, string name, float score ) : id_(id), score_(score)
 {
     setName( name );
-}
+} // end Student constructor
 
 // accessor functions for Student object
 Student &Student::setID( int id )
 {
     id_ = id;
     return *this;
-}
+} // end function setID
 
 // set name for the Student record
 Student &Student::setName( string name )
@@ -37,14 +41,14 @@ Student &Student::setName( string name )
     name_[ length ] = '\0';  // null terminate the character array
 
     return *this;
-}
+} // end function setName
 
 // set score for the Student record
 Student &Student::setScore( float score )
 {
     score_ = score;
     return *this;
-}
+} // end function setScore
 
 // print a record
 void Student::print()
@@ -53,7 +57,7 @@ void Student::print()
     cout << setw(4) << id_
         << setw(NAME_LENGTH) << name_
         << setw(8) << score_ << endl;
-} // end function printRecord
+} // end function print
 
 // check if the record is null
 bool Student::isNullRecord()
@@ -61,30 +65,16 @@ bool Student::isNullRecord()
     // check if the record is null
     return (
             id_ == 0
-        &&
+            &&
             string( name_ ) == ""
-        &&
+            &&
             score_ == 0.00
     );
-}
+} // end function isNullRecord
 
-// get number of student records in the file
-int getRecordCount( ifstream &inFile )
-{
-    if( !inFile )
-    {
-        cerr << "error: no file attached to ifstream object!" << endl;
-        exit(1);
-    }
-
-    // position get pointer
-    inFile.seekg( 0, ios::end );  // 0 bytes from end of file
-    // data length (bytes) in file divided by bytes per record
-    int records = inFile.tellg() / sizeof( Student );
-    inFile.seekg( 0, ios::beg );  // reset get pointer
-
-    return records;
-} // end function getRecordCount
+/**
+ *  record processing utility functions
+ */
 
 // get number of student records in the file
 int getRecordCount( fstream &ioFile )
@@ -141,7 +131,7 @@ void printRecordHeader()
 {
     // print record header
     cout << setw(4) << "ID"
-        << setw(Student::NAME_LENGTH) << "Name"
+        << setw(NAME_LENGTH) << "Name"
         << setw(8) << "Result"
         << fixed << setprecision(2) << endl;
 } // end function printRecordHeader
@@ -164,7 +154,7 @@ bool updateRecord( fstream &ioFile, int recordNumber )
     {
         name = getString(
                 "Enter name of the student: ",
-                Student::NAME_LENGTH );
+                NAME_LENGTH );
     }while( name.size() < 3 );
     // set record's name field to the user input
     rec.setName( name );

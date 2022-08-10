@@ -6,12 +6,12 @@
 #include <string>
 using namespace std;
 
+// const length for name char array
+const int NAME_LENGTH = 30;
+
 class Student
 {
 public:
-    // const length for name char array
-    static const int NAME_LENGTH = 30;
-
     // default constructor
     Student( int = 0, string = "", float = 0.0 );
     // accessor functions for Student object
@@ -33,8 +33,6 @@ private:
     float score_;
 };
 
-// get number of student records in the file
-int getRecordCount( ifstream & );
 // get number of student records in the file
 int getRecordCount( fstream & );
 // ask for a record number to search

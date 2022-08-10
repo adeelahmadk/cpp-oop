@@ -106,8 +106,7 @@ Once a function is defined as `virtual` in the base class, its overridden copy i
 
 ## Generic Programming
 
-C++ requires us to declare variables, functions, and most other kinds of entities using specific types. However, a lot of code looks the same for different types. For example, the implementation of the algorithm *quicksort* looks structurally the same
-for different data structures, such as arrays of `int`s or `vector`s of `string`s, as long as the contained types can be compared to each other.
+C++ requires us to declare variables, functions, and most other kinds of entities using specific types. However, a lot of code looks the same for different types. For example, the implementation of the algorithm *quick sort* looks structurally the same for different data structures, such as arrays of `int`s or `vector`s of `string`s, as long as the contained types can be compared to each other.
 
 If a programming language doesn’t support a special language feature for this kind of **genericity**, you only have bad alternatives:
 
@@ -217,7 +216,7 @@ template<typename T>
 class Array { };
 ```
 
-an object intantiation like `Array< int > intArray;` creates a concrete form of the class template called **class-template specialization**. A number specializations for a class template can be aliased using `typedef` statement in the header definition like
+an object instantiation like `Array< int > intArray;` creates a concrete form of the class template called **class-template specialization**. A number of specializations for a class template can be aliased using `typedef` statement in the header definition like
 
 ```c++
 ...
@@ -226,7 +225,16 @@ typedef Array< float > FloatArray;
 typedef Array< double > DoubleArray;
 ```
 
-C++ standard library defines many such `typedef`s for its class-template specializations.
+C++ standard library defines many such `typedef`s for its class-template specializations. For example
+
+```cpp
+// class basic_string specialized for single byte character
+typedef std::basic_string<char> std::string;
+// class basic_string specialized for two byte (wide) character
+typedef	std::basic_string<wchar_t> std::wstring;
+```
+
+
 
 ### Nontype Parameters and Default Types
 
@@ -292,7 +300,7 @@ template< typename T, int elements > Stack { };
 // defines a specialization from a nontype parameter
 Stack< double, 100 > mostRecentSalesFigures;
 
-// (7) defines a class template with default valued nontype parameter
+// (8) defines a class template with default valued nontype parameter
 template< typename T, int elements = 10 > Stack { };
 // defines a specialization with the default number of elements
 Stack< string > recentPosts;
@@ -2096,31 +2104,44 @@ using namespace std;
 // const length for name char array
 const int NAME_LENGTH = 30;
 
-// alias definition for a student record
-typedef struct {
-    int id;
-    char name[NAME_LENGTH];
-    float score;
-} student;
+class Student
+{
+public:
+    // default constructor
+    Student( int = 0, string = "", float = 0.0 );
+    // accessor functions for Student object
+    Student &setID( int id );
+    int getID() const { return id_; }
+    Student &setName( string name );
+    string getName() const { return string( name_ ); }
+    Student &setScore( float score );
+    float getScore() const { return score_; }
+    // print record stored in "this" object
+    void print();
+    // check if "this" record is deleted
+    bool isNullRecord();
 
-// get number of student records in the file
-int getRecordCount( ifstream & );
+private:
+    // alias definition for a student record
+    int id_;
+    char name_[NAME_LENGTH];
+    float score_;
+};
+
 // get number of student records in the file
 int getRecordCount( fstream & );
 // ask for a record number to search
 int getRecordRequest( int );
 // read a record in the file
-student readRecord( fstream &, int );
+Student readRecord( fstream &, int );
 // print a row of field headings
 void printRecordHeader();
-// print a record
-void printRecord( student );
 // update a record at a (record numbered) location
 bool updateRecord( fstream &, int );
 // dalete a record at a (record numbered) location
 bool deleteRecord( fstream &, int );
 // check if a record is deleted
-bool isDeletedRecord( student );
+bool isDeletedRecord( Student );
 
 #endif
 ```
@@ -2134,29 +2155,75 @@ bool isDeletedRecord( student );
 #include <sstream>
 #include <iomanip>
 #include <cstdlib>
-#include <cstring>
 #include "inputs.h"
 #include "record.h"
 
-student nullStudentRecord;
+// null Student object, usefull to erase
+// a record in the random-access file
+Student nullStudentRecord;
 
-// get number of student records in the file
-int getRecordCount( ifstream &inFile )
+/**
+ *  Student class member functions
+ */
+
+// default constructor
+Student::Student( int id, string name, float score ) : id_(id), score_(score)
 {
-    if( !inFile )
-    {
-        cerr << "error: no file attached to ifstream object!" << endl;
-        exit(1);
-    }
+    setName( name );
+} // end Student constructor
 
-    // position get pointer
-    inFile.seekg( 0, ios::end );  // 0 bytes from end of file
-    // data length (bytes) in file divided by bytes per record
-    int records = inFile.tellg() / sizeof( student );
-    inFile.seekg( 0, ios::beg );  // reset get pointer
+// accessor functions for Student object
+Student &Student::setID( int id )
+{
+    id_ = id;
+    return *this;
+} // end function setID
 
-    return records;
-} // end function getRecordCount
+// set name for the Student record
+Student &Student::setName( string name )
+{
+    int length = name.length();
+    length = ( length < NAME_LENGTH ? length : NAME_LENGTH - 1 );
+    // copy name from string object to record's name field
+    name.copy(
+            name_,
+            length
+        );
+    name_[ length ] = '\0';  // null terminate the character array
+
+    return *this;
+} // end function setName
+
+// set score for the Student record
+Student &Student::setScore( float score )
+{
+    score_ = score;
+    return *this;
+} // end function setScore
+
+// print a record
+void Student::print()
+{
+    // print read record
+    cout << setw(4) << id_
+        << setw(NAME_LENGTH) << name_
+        << setw(8) << score_ << endl;
+} // end function print
+
+// check if the record is null
+bool Student::isNullRecord()
+{
+    // check if the record is null
+    return (
+            id_ == 0                &&
+            string( name_ ) == ""   &&
+            score_ == 0.00
+    );
+} // end function isNullRecord
+
+/**
+ *  record processing utility functions
+ */
 
 // get number of student records in the file
 int getRecordCount( fstream &ioFile )
@@ -2170,7 +2237,7 @@ int getRecordCount( fstream &ioFile )
     // position get pointer
     ioFile.seekg( 0, ios::end );  // 0 bytes from end of file
     // data length (bytes) in file divided by bytes per record
-    int records = ioFile.tellg() / sizeof( student );
+    int records = ioFile.tellg() / sizeof( Student );
     ioFile.seekg( 0, ios::beg );  // reset get pointer
 
     return records;
@@ -2195,15 +2262,15 @@ int getRecordRequest( int recordCount )
 } // end function getRecordRequest
 
 // read a record in the file
-student readRecord( fstream &inFile, int recordNumber )
+Student readRecord( fstream &inFile, int recordNumber )
 {
-    student rec;
+    Student rec;
     // position the get pointer
-    inFile.seekg( ( recordNumber - 1 ) * sizeof( student ) );
+    inFile.seekg( ( recordNumber - 1 ) * sizeof( Student ) );
     // read the record
     inFile.read(
             reinterpret_cast<char *>( &rec ),
-            sizeof( student )
+            sizeof( Student )
     );
     return rec;
 } // end function readRecord
@@ -2218,27 +2285,18 @@ void printRecordHeader()
         << fixed << setprecision(2) << endl;
 } // end function printRecordHeader
 
-// print a record
-void printRecord( student record )
-{
-    // print read record
-    cout << setw(4) << record.id
-        << setw(NAME_LENGTH) << record.name
-        << setw(8) << record.score << endl;
-} // end function printRecord
-
 // update a record at a (record numbered) location
 bool updateRecord( fstream &ioFile, int recordNumber )
 {
-    student rec;
+    Student rec;
     string name;
     float score;
-  	int length;
+    int length;
 
     // position the get pointer
-    ioFile.seekp( ( recordNumber - 1 ) * sizeof( student ) );
+    ioFile.seekp( ( recordNumber - 1 ) * sizeof( Student ) );
     // copy recordNumber to the record's id field
-    rec.id = recordNumber;
+    rec.setID( recordNumber );
 
     // read name field from the user
     do
@@ -2247,28 +2305,21 @@ bool updateRecord( fstream &ioFile, int recordNumber )
                 "Enter name of the student: ",
                 NAME_LENGTH );
     }while( name.size() < 3 );
-    // calculate number of characters to copy to record's name field
-    length = name.length();
-    length = ( length < NAME_LENGTH ? length : NAME_LENGTH - 1 );
-    // copy name from string object to record's name field
-    name.copy(
-            rec.name,
-            length
-        );
-    rec.name[ length ] = '\0';  // null terminate the character array
+    // set record's name field to the user input
+    rec.setName( name );
 
     // read score filed from the user
     do
     {
         score = getFloat( string( "Enter score: " ) );
     }while( score < 0.0 || score > 100.0 );
-    // copy score to the record's score field
-    rec.score = score;
+    // set the record's score field to the user input
+    rec.setScore( score );
 
     // write the record
     ioFile.write(
             reinterpret_cast< char * >( &rec ),
-            sizeof( student )
+            sizeof( Student )
     );
     if( ioFile.good() )
     {
@@ -2282,13 +2333,13 @@ bool updateRecord( fstream &ioFile, int recordNumber )
 bool deleteRecord( fstream &ioFile, int recordNumber )
 {
     // position the get pointer
-    ioFile.seekp( ( recordNumber - 1 ) * sizeof( student ) );
+    ioFile.seekp( ( recordNumber - 1 ) * sizeof( Student ) );
 
     cout << "Writing null record...\n";
     // write the record
     ioFile.write(
             reinterpret_cast< char * >( &nullStudentRecord ),
-            sizeof( student )
+            sizeof( Student )
     );
     if( ioFile.good() )
     {
@@ -2299,10 +2350,10 @@ bool deleteRecord( fstream &ioFile, int recordNumber )
 } // end function deleteRecord
 
 // check if a record is deleted
-bool isDeletedRecord( student rec )
+bool isDeletedRecord( Student rec )
 {
     // check if the record is null
-    return ( rec.id == 0 && string( rec.name ) == "" && rec.score == 0.00 );
+    return rec.isNullRecord();
 } // end function isDeletedRecord
 ```
 
@@ -2332,12 +2383,14 @@ int main()
 
     const int recordCount = 5;
     // initialize records
-    student studentRecords[recordCount] = {
-        { 1, "Sqib Hameed", 83.50 },
-        { 2, "Raza Farooq", 79.75 },
+    Student studentRecords[recordCount] = {
+        /* this type of initialization is only
+           possible at declaration time! */
+        { 1, "Sqib Hameed",  83.50 },
+        { 2, "Raza Farooq",  79.75 },
         { 3, "Muneeb Ahmed", 88.25 },
         { 4, "Faizan Ahmed", 73.00 },
-        { 5, "Usaid Azhar", 87.67 }
+        { 5, "Usaid Azhar",  87.67 }
     };
 
     for( size_t index = 0; index < recordCount; index++ )
@@ -2345,8 +2398,8 @@ int main()
         // write a record as array of byte sized data
         fout.write(
                 reinterpret_cast< char * >( &studentRecords[index] ),
-                sizeof( student )  // size of record to be written
-                );
+                sizeof( Student )  // size of record to be written
+            );
     }
 
     fout.close();  // close file
@@ -2387,9 +2440,9 @@ int main()
     printRecordHeader();
     for( int recordNumber = 1; recordNumber <= recordCount; recordNumber++ )
     {
-        student rec = readRecord( fin, recordNumber );
-        if( !isDeletedRecord( rec ) )
-            printRecord( rec ); // print the record
+        Student rec = readRecord( fin, recordNumber );
+        if( ! isDeletedRecord( rec ) )
+            rec.print();
 
     }
 
@@ -2416,7 +2469,7 @@ int main()
     int recordCount = 0,
         searchKey = 0;
     char choice = 0;
-    student rec;
+    Student rec;
 
     // open file for reading binary data
     fstream fin( "students.bin", ios::in | ios::binary );
@@ -2443,8 +2496,9 @@ int main()
         }
         else
         {
+            printRecordHeader();
             // print the record
-            printRecord( rec );
+            rec.print();
         }
         cout << endl;
         // ask a yes/no question
@@ -2500,7 +2554,7 @@ int main()
 
         printRecordHeader();
         // print the current status of the record
-        printRecord( readRecord( fio, searchKey ) );
+        readRecord( fio, searchKey ).print();
 
         cout << endl;
         // ask a yes/no question
@@ -2513,7 +2567,7 @@ int main()
             {
                 cout << "Record after update:\n";
                 // print updated record
-                printRecord( readRecord( fio, searchKey ) );
+                readRecord( fio, searchKey ).print();
             }
             else
             {
@@ -2553,7 +2607,7 @@ int main()
     int recordCount = 0,
         searchKey = 0;
     char choice = 0;
-    student rec;
+    Student rec;
 
     // open file to read and write binary data
     fstream fio( "students.bin", ios::in | ios::out | ios::binary );
@@ -2567,7 +2621,6 @@ int main()
 
     // get record count
     recordCount = getRecordCount( fio );
-
     do
     {
         cout << "Total " << recordCount
@@ -2581,7 +2634,7 @@ int main()
             cout << "\nRecord you are about to delete: " << endl;
             printRecordHeader();
             // print the current status of the record
-            printRecord( rec );
+            rec.print();
 
             cout << endl;
             // ask a yes/no question
@@ -2594,7 +2647,7 @@ int main()
                 // delete the record
                 if( deleteRecord( fio, searchKey ) )
                 {
-                    cout << "Record deleted successfully!";
+                    cout << "Record deleted successfully!\n";
                 }
                 else
                 {
@@ -2624,9 +2677,11 @@ int main()
 
 ## References
 
-1. [*CppReference* - Error handling](https://en.cppreference.com/w/cpp/error)
-2. [CPlusPlus.com](https://cplusplus.com/reference/stdexcept/)
+1. [*CppReference*](https://en.cppreference.com/w/cpp)
+2. [*CppReference* - Error handling](https://en.cppreference.com/w/cpp/error)
+3. [Learn C++](https://www.learncpp.com/)
 2. [`std::cin` and handling invalid input](https://www.learncpp.com/cpp-tutorial/stdcin-and-handling-invalid-input/)
+2. [CPlusPlus.com](https://cplusplus.com/reference/stdexcept/)
 
 
 
