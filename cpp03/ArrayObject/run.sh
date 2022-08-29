@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 echo "compiling..."
-mkdir -p ../build
+mkdir -p ../../build
 g++ ArrayDriver.cxx \
     -I../include \
-    -o ../build/ArrayDriver
+    -o ../../build/ArrayObjectDriver
 
-../build/ArrayDriver
+#../../build/ArrayObjectDriver

@@ -94,7 +94,7 @@ int main()
     }
 
     IntegerArray integers4( 5 );
-    for( int i = 0; i < integers4.getSize(); i++ )
+    for( size_t i = 0; i < integers4.getSize(); i++ )
         integers4[i] = 2*i + 1;
 
     cout << "\nintegers4:\n" << integers4;

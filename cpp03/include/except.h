@@ -14,7 +14,7 @@ public:
     IllegalIndexException()
         // pass custom message to base class constructor
         : out_of_range( "attempt to access an illegal index" ) {}
-    IllegalIndexException( const string &msg )
+    IllegalIndexException( const string &msg = "" )
         : out_of_range( msg ) {}
 };
 

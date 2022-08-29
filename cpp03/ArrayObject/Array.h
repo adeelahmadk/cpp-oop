@@ -1,12 +1,21 @@
-// Array.h
-// Array class template definition with overloaded operators.
+/**
+ * @file Array.h
+ * @author Adeel Ahmad (6880680+adeelahmadk@users.noreply.github.com)
+ * @brief Array class template definition with overloaded operators.
+ * @version 0.1
+ * @date 2022-08-18
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+
 #ifndef _ARRAY_H
 #define _ARRAY_H
 
 #include <iostream>
 #include <iomanip>
 #include <cstdlib> // exit function prototype
-#include "except.h"
+#include "../include/except.h"
 using namespace std;
 
 // Forward declarations for the class
@@ -15,7 +24,11 @@ template<typename T> class Array;
 template<typename T> ostream &operator<<( ostream &output, const Array<T> &a );
 template<typename T> istream &operator>>( istream &input, Array<T> &a );
 
-// template class declaration
+/**
+ * @brief Array template class definition
+ *
+ * @tparam T
+ */
 template<typename T>
 class Array
 {
@@ -23,7 +36,7 @@ class Array
     friend ostream &operator<< <>( ostream &output, const Array<T> &a );
     friend istream &operator>> <>( istream &input, Array<T> &a );
 
-    /**
+    /*
      *
      * Methods alternate to the Forward Declarations.
      * - define the friend function within the class body at the
@@ -57,15 +70,20 @@ public:
     T operator[]( size_t ) const;
 private:
     void initArray();
-    size_t size; // pointer-based array size
-    T *ptr; // pointer to first element of pointer-based array
+    size_t size_; // number of memory blocks allocated to ptr_
+    T *ptr_; // pointer to first element of pointer-based array
 }; // end class Array
 
 // default constructor for class Array (default size 10)
+/**
+ * @brief Construct a new Array< T>:: Array object
+ *
+ * @tparam T
+ */
 template<typename T>
 Array<T>::Array()
 {
-    size = 10; //( arraySize > 0 ? arraySize : 10 ); // validate arraySize
+    size_ = 10; // default arraySize
     initArray();
 } // end Array default constructor
 
@@ -74,7 +92,7 @@ Array<T>::Array()
 template<typename T>
 Array<T>::Array( size_t arraySize )
 {
-    size = ( arraySize > 0 ? arraySize : 10 ); // validate arraySize
+    size_ = ( arraySize > 0 ? arraySize : 10 ); // validate arraySize
     initArray();
 } // end Array default constructor
 
@@ -82,36 +100,36 @@ Array<T>::Array( size_t arraySize )
 // must receive a reference to prevent infinite recursion
 template<typename T>
 Array<T>::Array( const Array<T> &arrayToCopy )
-   : size( arrayToCopy.size )
+   : size_( arrayToCopy.size_ )
 {
-   ptr = new T[ size ]; // create space for pointer-based array
+   ptr_ = new T[ size_ ]; // create space for pointer-based array
 
-   for ( size_t i = 0; i < size; i++ )
-      ptr[ i ] = arrayToCopy.ptr[ i ]; // copy into object
+   for ( size_t i = 0; i < size_; i++ )
+      ptr_[ i ] = arrayToCopy.ptr_[ i ]; // copy into object
 } // end Array copy constructor
 
 // destructor for class Array
 template<typename T>
 Array<T>::~Array()
 {
-   delete [] ptr; // release pointer-based array space
+   delete [] ptr_; // release pointer-based array space
 } // end destructor
 
 // class implementation to create & initialize dynamic array element
 template<typename T>
 void Array<T>::initArray()
 {
-   ptr = new T[ size ]; // create space for pointer-based array
+   ptr_ = new T[ size_ ]; // create space for pointer-based array
 
-   for ( size_t i = 0; i < size; i++ )
-      ptr[ i ] = 0; // set pointer-based array element
+   for ( size_t i = 0; i < size_; i++ )
+      ptr_[ i ] = 0; // set pointer-based array element
 }
 
 // return number of elements of Array
 template<typename T>
 size_t Array<T>::getSize() const
 {
-   return size; // number of elements in Array
+   return size_; // number of elements in Array
 } // end function getSize
 
 // overloaded assignment operator;
@@ -123,15 +141,15 @@ const Array<T> &Array<T>::operator=( const Array<T> &right )
    {
       // for Arrays of different sizes, deallocate original
       // left-side array, then allocate new left-side array
-      if ( size != right.size )
+      if ( size_ != right.size_ )
       {
-         delete [] ptr; // release space
-         size = right.size; // resize this object
-         ptr = new T[ size ]; // create space for array copy
+         delete [] ptr_; // release space
+         size_ = right.size_; // resize this object
+         ptr_ = new T[ size_ ]; // create space for array copy
       } // end inner if
 
-      for ( size_t i = 0; i < size; i++ )
-         ptr[ i ] = right.ptr[ i ]; // copy array into object
+      for ( size_t i = 0; i < size_; i++ )
+         ptr_[ i ] = right.ptr_[ i ]; // copy array into object
    } // end outer if
 
    return *this; // enables x = y = z, for example
@@ -142,11 +160,11 @@ const Array<T> &Array<T>::operator=( const Array<T> &right )
 template<typename T>
 bool Array<T>::operator==( const Array<T> &right ) const
 {
-   if ( size != right.size )
+   if ( size_ != right.size_ )
       return false; // arrays of different number of elements
 
-   for ( size_t i = 0; i < size; i++ )
-      if ( ptr[ i ] != right.ptr[ i ] )
+   for ( size_t i = 0; i < size_; i++ )
+      if ( ptr_[ i ] != right.ptr_[ i ] )
          return false; // Array contents are not equal
 
    return true; // Arrays are equal
@@ -158,7 +176,7 @@ template<typename T>
 T &Array<T>::operator[]( size_t subscript )
 {
    // check for subscript out-of-range error
-   if ( subscript < 0 || subscript >= size )
+   if ( subscript >= size_ )
    {
       cerr << "\nError: Subscript " << subscript
          << " out of range" << endl;
@@ -167,7 +185,7 @@ T &Array<T>::operator[]( size_t subscript )
       throw IndexOutOfBoundException();
    } // end if
 
-   return ptr[ subscript ]; // reference return
+   return ptr_[ subscript ]; // reference return
 } // end function operator[]
 
 // overloaded subscript operator for const Arrays
@@ -176,7 +194,7 @@ template<typename T>
 T Array<T>::operator[]( size_t subscript ) const
 {
    // check for subscript out-of-range error
-   if ( subscript < 0 || subscript >= size )
+   if ( subscript >= size_ )
    {
       cerr << "\nError: Subscript " << subscript
          << " out of range" << endl;
@@ -185,30 +203,30 @@ T Array<T>::operator[]( size_t subscript ) const
       throw IndexOutOfBoundException();
    } // end if
 
-   return ptr[ subscript ]; // returns copy of this element
+   return ptr_[ subscript ]; // returns copy of this element
 } // end function operator[]
 
 // overloaded input operator for class Array;
 // inputs values for entire Array
-template<typename A>
-istream &operator>>( istream &input, Array<A> &a )
+template<typename T>
+istream &operator>>( istream &input, Array<T> &a )
 {
-   for ( size_t i = 0; i < a.size; i++ )
-      input >> a.ptr[ i ];
+   for ( size_t i = 0; i < a.size_; i++ )
+      input >> a.ptr_[ i ];
 
    return input; // enables cin >> x >> y;
 } // end function
 
 // overloaded output operator for class Array
-template<typename A>
-ostream &operator<<( ostream &output, const Array<A> &a )
+template<typename T>
+ostream &operator<<( ostream &output, const Array<T> &a )
 {
    size_t i;
 
    // output private ptr-based array
-   for ( i = 0; i < a.size; i++ )
+   for ( i = 0; i < a.size_; i++ )
    {
-      output << setw( 12 ) << a.ptr[ i ];
+      output << setw( 12 ) << a.ptr_[ i ];
 
       if ( ( i + 1 ) % 4 == 0 ) // 4 numbers per row of output
          output << endl;

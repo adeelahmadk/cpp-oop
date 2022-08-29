@@ -492,7 +492,7 @@ Several convenience classes are predefined in the header `<stdexcept>` to report
 
 C++ provides `try` blocks to enable exception handling. A `try` block consists of keyword `try` followed by braces ( `{}` ) that define a block of code in which exceptions might occur. The `try` block encloses statements that might cause exceptions and statements that should be skipped if an exception occurs.
 
-Exceptions are processed by **catch handlers** (also called **exception handlers**), which catch and handle exceptions. At least one catch handler must immediately follow each try block. Each catch handler begins with the keyword `catch` and specifies in parentheses an **exception parameter** that represents the type of exception the catch handler can process ( e.g. logic_error).
+Exceptions are processed by **catch handlers** (also called **exception handlers**), which catch and handle exceptions. At least one catch handler must immediately follow each try block. Each catch handler begins with the keyword `catch` and specifies in parentheses an **exception parameter** that represents the type of exception the catch handler can process ( e.g. logic_error). Exceptions are always caught by reference.
 
 ### Extending C++ Exception Hierarchy
 
