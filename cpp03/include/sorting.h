@@ -19,11 +19,18 @@ namespace sorting {
     void swap( int &, int & );
 }
 
-// sort an array
+// selection sort algorithm
 void selectionSort(
             int [],  // unsorted int array
             size_t,  // size of the array
             bool (*)( int, int ) // pointer to the comparison function
-        );
+);
+
+// insertion sort algorithm
+void insertionSort(
+            int [],  // unsorted int array
+            size_t,  // size of the array
+            bool (*)( int, int ) // pointer to the comparison function
+);
 
 #endif /* _SORTING_H */

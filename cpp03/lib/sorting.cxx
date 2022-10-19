@@ -71,22 +71,20 @@ void selectionSort(
             int A[],  // array to sort
             size_t length,  // length of the array
             bool (*compareFcn)( int, int ) // pointer to the comparison function
-        )
-{
+) {
     // Step through each element of the array
-    for( size_t startIndex = 0; startIndex < length - 1; startIndex++ )
-    {
+    for( size_t startIndex = 0; startIndex < length - 1; startIndex++ ) {
         // index of the smallest/greatest element so far
         size_t swapIndex = startIndex;
         // Look for smallest/greatest element remaining in the array
-        for( size_t currentIndex = startIndex + 1;
-                currentIndex < length;
-                currentIndex++ )
-        {
+        for( 
+            size_t currentIndex = startIndex + 1;
+            currentIndex < length;
+            currentIndex++
+        ) {
             // If the current element is smaller/greater than
             // our previously found smallest/greatest
-            if( compareFcn( A[swapIndex], A[currentIndex] ) ) // use comparison function
-            {
+            if( compareFcn( A[swapIndex], A[currentIndex] ) ) {
                 // inthis is the new smallest/greatest number
                 // for this iteration
                 swapIndex = currentIndex;
@@ -98,3 +96,21 @@ void selectionSort(
 }
 
 
+void insertionSort(
+        int A[],
+        size_t length,
+        bool (*compareFcn)( int, int )
+) {
+    int insert;
+    for ( size_t next = 1; next < length; next++ ) {
+        insert = A[ next ]; // store the value in the current element
+        size_t moveItem = next; // initialize location to place element
+        // search for the location in which to put the current element
+        while ( ( moveItem > 0 ) && compareFcn( A[moveItem - 1], insert ) ) {
+            // shift element one slot to the right
+            A[ moveItem ] = A[ moveItem - 1 ];
+            moveItem--;
+        } // end while
+        A[ moveItem ] = insert; // place inserted element into the array
+    } // end for
+}

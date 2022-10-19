@@ -19,7 +19,7 @@ using namespace std;
  *
  * returns: nothing
  */
-void initRandArray( int arr[], size_t size, const range r )
+void initRandArray( int arr[], size_t size, const range &r )
 {
     for( size_t i = 0; i < size; i++)
         arr[i] = rangedRand( r );

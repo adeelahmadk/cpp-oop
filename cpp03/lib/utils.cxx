@@ -17,7 +17,7 @@ using namespace std;
  *
  * returns: random int value in the range
  */
-int rangedRand( const range r )
+int rangedRand( const range &r )
 {
     unsigned int delta = (r.max - r.min + 1);
     int divisor = ((RAND_MAX / delta) + 1);

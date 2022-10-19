@@ -9,6 +9,7 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
 | Topic                                                  | Description                                                  |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
 | [Projects with multiple files](multi-file-projects.md) | considerations and techniques for the management of projects |
+| [`sizeof` operator](sizeof-op.md)                      | `sizeof` operator and memory allocated to data types         |
 | [Principles of OOP](oop-principles.md)                 | principles of the object-oriented paradigm                   |
 | [Generic Programming](generic-programming.md)          | style of programming in where algorithms are written in types *to-be-specified-later* (specialized at compile-time) |
 | [Exception Handling](exceptions.md)                    | language feature to handle the “exception to the rule”       |
