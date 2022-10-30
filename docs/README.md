@@ -48,12 +48,12 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
 5. [Stream IO](stream-io.md#Stream-IO)
     1. [Stream Output](stream-io.md#Stream-Output)
     2. [Stream Input](stream-io.md#Stream-Input)
-        1. [`cin` and strings](stream-io.md#%60cin%60-and-strings)
+        1. [`cin` and strings](stream-io.md#cin-and-strings)
         2. [Stream Management Functions](stream-io.md#Stream-Management-Functions)
     3. [Unformatted I/O](stream-io.md#Unformatted-I/O)
     4. [Stream Manipulators](stream-io.md#Stream-Manipulators)
     5. [Stream Error States](stream-io.md#Stream-Error-States)
-    6. [`std::cin` and handling invalid input](stream-io.md#%60std%3A%3Acin%60-and-handling-invalid-input)
+    6. [`std::cin` and handling invalid input](stream-io.md#std%3A%3Acin-and-handling-invalid-input)
 6. [File Processing](file-processing.md#File-Processing)
     1. [Data Hierarchy](file-processing.md#Data-Hierarchy)
     2. [Files and Streams](file-processing.md#Files-and-Streams)
@@ -75,7 +75,8 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
 2. [*CppReference* - Error handling](https://en.cppreference.com/w/cpp/error)
 3. [Learn C++](https://www.learncpp.com/)
 2. [`std::cin` and handling invalid input](https://www.learncpp.com/cpp-tutorial/stdcin-and-handling-invalid-input/)
-2. [CPlusPlus.com](https://cplusplus.com/reference/stdexcept/)
+2. [C++ Wiki: isocpp](https://isocpp.org/wiki/faq)
+2. [CPlusPlus.com](https://cplusplus.com/)
 
 
 

@@ -6,12 +6,12 @@
 
 1. [Stream Output](#Stream-Output)
 2. [Stream Input](#Stream-Input)
-    1. [`cin` and strings](#%60cin%60-and-strings)
+    1. [`cin` and strings](#cin-and-strings)
     2. [Stream Management Functions](#Stream-Management-Functions)
 3. [Unformatted I/O](#Unformatted-I/O)
 4. [Stream Manipulators](#Stream-Manipulators)
 5. [Stream Error States](#Stream-Error-States)
-6. [`std::cin` and handling invalid input](#%60std%3A%3Acin%60-and-handling-invalid-input)
+6. [`std::cin` and handling invalid input](#std%3A%3Acin-and-handling-invalid-input)
 
 
 
@@ -96,7 +96,7 @@ The extraction operation on `cin` uses the type of the variable after the `>>` o
 
 This is very poor program behavior. Only very simple programs should rely on values extracted directly from `cin` without further checking. A little later we will see how *stringstreams* can be used to have better control over user input.
 
-#### `cin` and strings
+#### cin and strings
 
 The extraction operator can be used on `cin` to get strings of characters. However, `cin` extraction always considers spaces (whitespaces, tabs, new-line...) as terminating the value being extracted, and thus extracting a string means to always extract a single word, not a phrase or an entire sentence.
 
@@ -467,7 +467,7 @@ int main()
 
 
 
-### `std::cin` and handling invalid input
+### std::cin and handling invalid input
 
 Programs with user interfaces requiring some form of input use `std::cin` to prompt the user. However, the C++ input library is so unrestricted that a user intentionally or unintentionally may enter anything. As a result, the programmers writing the application must consider how a user may **misuse** their program. A well written program that anticipates such misuse and handles these error conditions gracefully is said to be **robust**. 
 
