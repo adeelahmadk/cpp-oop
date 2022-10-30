@@ -53,7 +53,7 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
     3. [Unformatted I/O](stream-io.md#Unformatted-I/O)
     4. [Stream Manipulators](stream-io.md#Stream-Manipulators)
     5. [Stream Error States](stream-io.md#Stream-Error-States)
-    6. [`std::cin` and handling invalid input](stream-io.md#std%3A%3Acin-and-handling-invalid-input)
+    6. [`std::cin` and handling invalid input](stream-io.md#std-cin-and-handling-invalid-input)
 6. [File Processing](file-processing.md#File-Processing)
     1. [Data Hierarchy](file-processing.md#Data-Hierarchy)
     2. [Files and Streams](file-processing.md#Files-and-Streams)

@@ -11,7 +11,7 @@
 3. [Unformatted I/O](#Unformatted-I/O)
 4. [Stream Manipulators](#Stream-Manipulators)
 5. [Stream Error States](#Stream-Error-States)
-6. [`std::cin` and handling invalid input](#std%3A%3Acin-and-handling-invalid-input)
+6. [`std::cin` and handling invalid input](#std-cin-and-handling-invalid-input)
 
 
 
@@ -467,7 +467,7 @@ int main()
 
 
 
-### std::cin and handling invalid input
+### std cin and handling invalid input
 
 Programs with user interfaces requiring some form of input use `std::cin` to prompt the user. However, the C++ input library is so unrestricted that a user intentionally or unintentionally may enter anything. As a result, the programmers writing the application must consider how a user may **misuse** their program. A well written program that anticipates such misuse and handles these error conditions gracefully is said to be **robust**. 
 
