@@ -6,12 +6,12 @@
 
 1. [Stream Output](#Stream-Output)
 2. [Stream Input](#Stream-Input)
-    1. [`cin` and strings](#`cin`-and-strings)
+    1. [`cin` and strings](#%60cin%60-and-strings)
     2. [Stream Management Functions](#Stream-Management-Functions)
 3. [Unformatted I/O](#Unformatted-I/O)
 4. [Stream Manipulators](#Stream-Manipulators)
 5. [Stream Error States](#Stream-Error-States)
-6. [`std::cin` and handling invalid input](#std::cin-and-handling-invalid-input)
+6. [`std::cin` and handling invalid input](#%60std%3A%3Acin%60-and-handling-invalid-input)
 
 
 

@@ -2,7 +2,7 @@
 
 
 
-1. [`sizeof` operator](#`sizeof`-operator)
+1. [`sizeof` operator](#%60sizeof%60-operator)
 2. [Companion Code](#Companion-Code)
 
 
