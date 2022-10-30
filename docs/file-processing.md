@@ -1206,4 +1206,10 @@ int main()
 
 
 
+## Companion Code
+
+You can find the random access file example programs in [doc_examples](../doc_examples/RandAccessFile).
+
+
+
 [^ Top](#File-Processing)

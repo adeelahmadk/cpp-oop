@@ -11,7 +11,7 @@
 3. [Unformatted I/O](#Unformatted-I/O)
 4. [Stream Manipulators](#Stream-Manipulators)
 5. [Stream Error States](#Stream-Error-States)
-6. [`std::cin` and handling invalid input](#`std::cin`-and-handling-invalid-input)
+6. [`std::cin` and handling invalid input](#std::cin-and-handling-invalid-input)
 
 
 

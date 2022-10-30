@@ -10,6 +10,7 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
 | ------------------------------------------------------ | ------------------------------------------------------------ |
 | [Projects with multiple files](multi-file-projects.md) | considerations and techniques for the management of projects |
 | [`sizeof` operator](sizeof-op.md)                      | `sizeof` operator and memory allocated to data types         |
+| [Pointer Arithmetics](ptr-arithms.md)                  | arithmetic operations defined on the pointers                |
 | [Principles of OOP](oop-principles.md)                 | principles of the object-oriented paradigm                   |
 | [Generic Programming](generic-programming.md)          | style of programming in where algorithms are written in types *to-be-specified-later* (specialized at compile-time) |
 | [Exception Handling](exceptions.md)                    | language feature to handle the “exception to the rule”       |
@@ -27,6 +28,8 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
     2. [Storage Classes](multi-file-projects.md#Storage-Classes)
         1. [Automatic Storage Class](multi-file-projects.md#Automatic-Storage-Class)
         2. [Static Storage Class](multi-file-projects.md#Static-Storage-Class)
+2. [`sizeof` operator](sizeof-op.md)
+3. [Pointer Arithmetics](ptr-arithms.md)
 2. [Principles of OOP](oop-principles.md)
     1. [Encapsulation](oop-principles.md#Encapsulation)
     2. [Abstraction](oop-principles.md#Abstraction)
@@ -48,9 +51,9 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
         1. [`cin` and strings](stream-io.md#`cin`-and-strings)
         2. [Stream Management Functions](stream-io.md#Stream-Management-Functions)
     3. [Unformatted I/O](stream-io.md#Unformatted-I/O)
-    4. [Stream Manipulators](stream-io.md#Stream Manipulators)
+    4. [Stream Manipulators](stream-io.md#Stream-Manipulators)
     5. [Stream Error States](stream-io.md#Stream-Error-States)
-    6. [`std::cin` and handling invalid input](stream-io.md#`std::cin`-and-handling-invalid-input)
+    6. [`std::cin` and handling invalid input](stream-io.md#std::cin-and-handling-invalid-input)
 6. [File Processing](file-processing.md#File-Processing)
     1. [Data Hierarchy](file-processing.md#Data-Hierarchy)
     2. [Files and Streams](file-processing.md#Files-and-Streams)

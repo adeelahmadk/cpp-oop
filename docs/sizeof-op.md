@@ -2,6 +2,11 @@
 
 
 
+1. [`sizeof` operator](#`sizeof`-operator)
+2. [Companion Code](#Companion-Code)
+
+
+
 ## `sizeof` operator
 
 The unary operator `sizeof` determines the size of an array (or of any other data type, variable or constant) in bytes during program compilation. When applied to the name of an array, as in code snippet below, the `sizeof` operator returns the total number of bytes in the array as a value of type `size_t`. The computer we used to compile this program stores variables of type `double` in 8 bytes of memory, and array is declared to have 20 elements (line 10), so array uses 160 bytes in memory. When applied to a pointer parameter (line 20) in a function that receives an array as an argument, the `sizeof` operator returns the size of the pointer in bytes (4 on the system we used)—not the size of the array.
@@ -97,3 +102,13 @@ sizeof ptr = 8
 ```
 
 The number of bytes used to store a particular data type may vary among systems. When writing programs that depend on data type sizes, and that will run on several computer systems, use `sizeof` to determine the number of bytes used to store the data types.
+
+
+
+## Companion Code
+
+You can find these example programs in [doc_examples](../doc_examples/sizeof_op).
+
+
+
+[^ Top](#Data-Types-and-Memory-Allocation)

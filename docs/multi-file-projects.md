@@ -6,6 +6,7 @@
 2. [Storage Classes](#Storage-Classes)
     1. [Automatic Storage Class](#Automatic-Storage-Class)
     2. [Static Storage Class](#Static-Storage-Class)
+3. [Companion Code](#Companion-Code)
 
 
 
@@ -173,3 +174,12 @@ creates variable pi of type double, initializes it to 3.14159 and indicates that
 
 Global variables (except those that are `const`) and functions that are not preceded by `static` in their definitions have external linkage. This means they can be accessed in other files if those files contain proper declarations and/or function prototypes. 
 
+
+
+## Companion Code
+
+You can find these example programs in [doc_examples](../doc_examples/storage_classes).
+
+
+
+[^ Top](#Compiling-Multiple-Source-File-Programs)
