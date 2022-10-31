@@ -9,7 +9,7 @@
 3. [Class Template Specializations](#Class-Template-Specializations)
 4. [Nontype Parameters and Default Types](#Nontype-Parameters-and-Default-Types)
 5. [Class Template Specializations Summarized](#Class-Template-Specializations-Summarized)
-6. [Limitations of Templates](#Limitations-of-Templates)
+6. [Limitations of Templates prior to C++11](#Limitations-of-Templates-prior-to-C++11)
 
 
 
@@ -217,7 +217,7 @@ Stack< string > recentPosts;
 
 
 
-### Limitations of Templates
+### Limitations of Templates prior to C++11
 
 In order to understand *why* things are the way they are, first accept these facts:
 
@@ -377,4 +377,4 @@ private:
 4. [Should implementation be included in .h file?](https://www.bogotobogo.com/cplusplus/template_declaration_definition_header_implementation_file.php)
 5. [How to avoid linker errors due to separate template function definition & declaration](https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl)
 6. [How can I avoid linker errors with my template classes?](https://isocpp.org/wiki/faq/templates#separate-template-class-defn-from-decl)
-7. 
+
