@@ -9,7 +9,7 @@
 3. [Class Template Specializations](#Class-Template-Specializations)
 4. [Nontype Parameters and Default Types](#Nontype-Parameters-and-Default-Types)
 5. [Class Template Specializations Summarized](#Class-Template-Specializations-Summarized)
-6. [Limitations of Templates in C++03](#Limitations-of-Templates-in-C03)
+6. [Limitations of Templates](#Limitations-of-Templates)
 
 
 
@@ -217,7 +217,13 @@ Stack< string > recentPosts;
 
 
 
-### Limitations of Templates in C++03
+### Limitations of Templates
+
+In order to understand *why* things are the way they are, first accept these facts:
+
+1. A template is not a class or a function. A template is a “pattern” that the compiler uses to generate a family of [classes](https://isocpp.org/wiki/faq/templates#class-templates) or [functions](https://isocpp.org/wiki/faq/templates#fn-templates).
+2. In order for the compiler to generate the code, it must see both the template definition (not just declaration) and the specific types/whatever used to “fill in” the template. For example, if you’re trying to use a `Foo<int>`, the compiler must see both the `Foo` template and the fact that you’re trying to make a specific `Foo<int>`.
+3. Your compiler probably doesn’t remember the details of one `.cpp` file while it is compiling another `.cpp` file. It *could*, but most do not and if you are reading this FAQ, it almost definitely does not. BTW this is called the “**separate compilation model**”.
 
 #### Template class can't define a default constructor
 
@@ -294,6 +300,8 @@ There are two solutions for this.
 
     Notice that `foo-impl.cpp` `#include`s a `.cpp` file, not a `.h` file.
 
+Since C++11 `extern template` becomes part of solution to this problem.
+
 #### Defining global friend functions as function templates
 
 The snag happens when the compiler sees the `friend` lines way up in the class definition proper. At that moment it does not yet know the `friend` functions are themselves templates; it assumes they are non-templates like this:
@@ -358,3 +366,15 @@ private:
 
 
 [^ Top](#Generic-Programming)
+
+
+
+## References
+
+1. [LearnCPP](https://www.learncpp.com/): Chapters# 8, 10, 14, 19
+2. [ISOCPP FAQs on templates](https://isocpp.org/wiki/faq/templates)
+3. [Why write the template class definition and declaration in the same .h file?](https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl)
+4. [Should implementation be included in .h file?](https://www.bogotobogo.com/cplusplus/template_declaration_definition_header_implementation_file.php)
+5. [How to avoid linker errors due to separate template function definition & declaration](https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl)
+6. [How can I avoid linker errors with my template classes?](https://isocpp.org/wiki/faq/templates#separate-template-class-defn-from-decl)
+7. 
