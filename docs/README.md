@@ -41,7 +41,7 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
     3. [Class Template Specializations](generic-programming.md#Class-Template-Specializations)
     4. [Nontype Parameters and Default Types](generic-programming.md#Nontype-Parameters-and-Default-Types)
     5. [Class Template Specializations Summarized](generic-programming.md#Class-Template-Specializations-Summarized)
-    6. [Limitations of Templates prior to C++11](generic-programming.md#Limitations-of-Templates-prior-to-C++11)
+    6. [Limitations of Templates prior to C++11](generic-programming.md#Limitations-of-Templates-prior-to-CPP11)
 4. [Exception Handling](exceptions.md#Exception-Handling)
     1. [Exceptions in C++ library](exceptions.md#Exceptions-in-C-library)
     2. [Extending C++ Exception Hierarchy](exceptions.md#Extending-C-Exception-Hierarchy)

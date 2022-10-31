@@ -9,7 +9,7 @@
 3. [Class Template Specializations](#Class-Template-Specializations)
 4. [Nontype Parameters and Default Types](#Nontype-Parameters-and-Default-Types)
 5. [Class Template Specializations Summarized](#Class-Template-Specializations-Summarized)
-6. [Limitations of Templates prior to C++11](#Limitations-of-Templates-prior-to-C++11)
+6. [Limitations of Templates prior to C++11](#Limitations-of-Templates-prior-to-CPP11)
 
 
 
@@ -217,7 +217,7 @@ Stack< string > recentPosts;
 
 
 
-### Limitations of Templates prior to C++11
+### Limitations of Templates prior to CPP11
 
 In order to understand *why* things are the way they are, first accept these facts:
 
