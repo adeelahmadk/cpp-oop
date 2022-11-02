@@ -8,7 +8,14 @@
 2. [Files and Streams](#Files-and-Streams)
 3. [Sequential Files](#Sequential-Files)
 4. [Unformatted File I/O](#Unformatted-File-I/O)
+    1. [read, write and gcount](#read,-write-and-gcount)
+
 5. [Random Access Files](#Random-Access-Files)
+    1. [Creating a Random-Access File](#Creating-a-Random-Access-File)
+    2. [The reinterpret_cast Operator](#The-reinterpret_cast-Operator)
+    3. [Example Program](#Example-Program)
+
+6. [Companion Code](#Companion-Code)
 
 
 
@@ -16,7 +23,7 @@
 
 Storage of data in memory is temporary. Files are used for data persistence—permanent retention of data. Computers store files on secondary storage devices, such as hard disks, CDs, DVDs, flash drives and tapes. C++ library provides class hierarchy for **formatted** and **unformatted** processing of files.
 
-### Data Hierarchy
+## Data Hierarchy
 
 Ultimately, all data items that digital computers process are reduced to combinations of zeros and ones. The smallest unit of data that computers can process is called a bit (short for “binary digit”—a digit that can assume one of two values). Programming with data in the low-level form of bits is cumbersome. For humans, It’s preferable to program with data in forms such as **decimal digits** (0–9), **letters** (A–Z and a–z) and **special symbols** (e.g., $, @, %, &, * and many others) referred to as **characters**. The set of all characters used to write programs and represent data items on a particular computer is called that computer’s character set. Because computers can process only 1 s and 0 s, every character in a computer’s character set is represented as a pattern of 1 s and 0 s. **Bytes** are composed of eight bits. We create programs and data items with characters; computers manipulate and process these characters as patterns of bits. In turn, C++ provides data type like **char**.
 
@@ -51,7 +58,7 @@ handled by the business) and many other types of files. A group of related files
 stored in a **database**. A collection of programs designed to create and manage databases is
 called a **database management system** (DBMS).
 
-### Files and Streams
+## Files and Streams
 
 
 
@@ -134,7 +141,7 @@ while ( inFile >> id >> name >> score )
 
 
 
-### Sequential Files
+## Sequential Files
 
 C++ imposes no structure on a file. Thus, a concept like that of a “record” does not exist in a C++ file. Files can be classified by the way data is organized in them. A sequential file **contains records organized by the order in which they were entered**. It means data is stored in a **chronological order** based on account number or some other **identifying data**. In order to locate the desired data, sequential files must be read starting at the beginning of the file. A sequential file  may be stored on a sequential access device such as magnetic tape or on a direct access device such as magnetic disk.
 
@@ -395,7 +402,7 @@ void outputLine( int account, const string name, double balance )
 } // end function outputLine
 ```
 
-#### Updating Sequential Files
+### Updating Sequential Files
 
 Data that is formatted and written to a sequential file **cannot be modified without the risk of destroying** other data in the file. For example, if the name “ White ” needs to be changed to “ Worthington ” the old name cannot be overwritten without corrupting the file. The record for White was written to the file as
 
@@ -413,13 +420,11 @@ The new record contains six more characters than the original record. Therefore,
 
 Such updating can be done awkwardly. For example, to make the preceding name change, the records before 300 White 0.00 in a sequential file could be copied to a new file, the updated record then written to the new file, and the records after 300 White 0.00 copied to the new file. This requires *processing every record in the file to update one record*. If many records are being updated in one pass of the file, though, this technique can be acceptable.
 
-
-
-### Unformatted I/O
+## Unformatted I/O
 
 As explained in the stream I/O section, unformatted (binary) input/output is performed using the `read` and `write` member functions of `istream` and `ostream` , respectively. Member function read inputs (designated number of) bytes to a file; member function write outputs (designated number of) bytes from a character array.
 
-#### `read()`, `write()` and `gcount()`
+### read, write and gcount
 
 ```cpp
 // istream class
@@ -438,7 +443,7 @@ ostream & write (const char * buf, streamsize n)
 
 Processing of random access files is performed using reading and writing binary data to files. We'll look at the concepts and library function in detail in the next section.
 
-### Random-Access Files
+## Random-Access Files
 
 Sequential files are inappropriate for **instant-access applications**, in which a particular record must be located immediately. Common instant-access applications are airline reservation systems, banking systems, point-of-sale systems, automated teller machines and other kinds of **transaction-processing systems** that require rapid access to specific data. A bank might have hundreds of thousands (or even millions) of other customers, yet, when a customer uses an automated teller machine, the program checks that customer’s account in a few seconds or less for sufficient funds. This kind of instant access is made possible with **random-access files**. Individual records of a random-access file can be accessed directly (and quickly) without having to search other records.
 
@@ -450,7 +455,7 @@ Figure illustrates C++’s view of a random-access file composed of fixed-length
 
 Data can be inserted into a random-access file without destroying other data in the file. Data stored previously also can be updated or deleted without rewriting the entire file.
 
-#### Creating a Random-Access File
+### Creating a Random-Access File
 
 The `ostream` member function `write` outputs a fixed number of bytes, beginning at a specific location in memory, to the specified stream. When the stream is associated with a file, function write writes the data at the location in the file specified by the “put” file-position pointer. The `istream` member function read inputs a fixed number of bytes from the specified stream to an area in memory beginning at a specified address. If the stream is associated with a file, function read inputs bytes at the location in the file specified by the “get” file-position pointer.
 
@@ -482,13 +487,13 @@ inFile.read(
 
 which always reads the binary version of the integer’s four bytes (on a machine with four-byte integers).
 
-#### The `reinterpret_cast` Operator
+### The reinterpret_cast Operator
 
 Unfortunately, most pointers that we pass to function write as the first argument are not of type `const char *`. To output objects of other types, we must convert the pointers to those objects to type `const char *`; otherwise, the compiler will not compile calls to function write. C++ provides the `reinterpret_cast` operator for cases like this in which a pointer of one type must be cast to an unrelated pointer type.
 
 A `reinterpret_cast` is performed at compile time and does not change the value of the object to which its operand points. Instead, it requests that the compiler reinterpret the operand as the target type (specified in the angle brackets following the keyword `reinterpret_cast` ).
 
-#### Example Program
+### Example Program
 
 Following example demonstrates how to write unformatted data to a file. Let's first lay down the utility header:
 
@@ -892,7 +897,7 @@ bool isDeletedRecord( Student rec )
 
 
 
-##### Creating and Writing to a file
+#### Creating and Writing to a file
 
 ```cpp
 // create a random access file
@@ -940,7 +945,7 @@ int main()
 }
 ```
 
-##### Reading a file
+#### Reading a file
 
 Now, let's find the number of records and read unformatted binary data in the random-access file:
 
@@ -1046,7 +1051,7 @@ int main()
 
 
 
-##### Update a record in the file
+#### Update a record in the file
 
 ```cpp
 // update a record requested by the user
@@ -1122,7 +1127,7 @@ int main()
 
 
 
-##### Delete a record
+#### Delete a record
 
 ```cpp
 // delete a record from a random access (binary) file
@@ -1208,7 +1213,7 @@ int main()
 
 ## Companion Code
 
-You can find the random access file example programs in [doc_examples](../doc_examples/RandAccessFile).
+You can find the random access file example programs in [examples](../examples/RandAccessFile/README.md).
 
 
 

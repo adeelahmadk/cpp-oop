@@ -30,22 +30,22 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
         2. [Static Storage Class](multi-file-projects.md#Static-Storage-Class)
 2. [`sizeof` operator](sizeof-op.md)
 3. [Pointer Arithmetics](ptr-arithms.md)
-2. [Principles of OOP](oop-principles.md)
+4. [Principles of OOP](oop-principles.md)
     1. [Encapsulation](oop-principles.md#Encapsulation)
     2. [Abstraction](oop-principles.md#Abstraction)
     3. [Inheritance](oop-principles.md#Inheritance)
     4. [Polymorphism](oop-principles.md#Polymorphism)
-3. [Generic Programming](generic-programming.md#Generic-Programming)
+5. [Generic Programming](generic-programming.md#Generic-Programming)
     1. [Function Templates](generic-programming.md#Function-Templates)
     2. [Class Templates](generic-programming.md#Class-Templates)
     3. [Class Template Specializations](generic-programming.md#Class-Template-Specializations)
     4. [Nontype Parameters and Default Types](generic-programming.md#Nontype-Parameters-and-Default-Types)
     5. [Class Template Specializations Summarized](generic-programming.md#Class-Template-Specializations-Summarized)
     6. [Limitations of Templates prior to C++11](generic-programming.md#Limitations-of-Templates-prior-to-CPP11)
-4. [Exception Handling](exceptions.md#Exception-Handling)
+6. [Exception Handling](exceptions.md#Exception-Handling)
     1. [Exceptions in C++ library](exceptions.md#Exceptions-in-C-library)
     2. [Extending C++ Exception Hierarchy](exceptions.md#Extending-C-Exception-Hierarchy)
-5. [Stream IO](stream-io.md#Stream-IO)
+7. [Stream IO](stream-io.md#Stream-IO)
     1. [Stream Output](stream-io.md#Stream-Output)
     2. [Stream Input](stream-io.md#Stream-Input)
         1. [`cin` and strings](stream-io.md#cin-and-strings)
@@ -54,14 +54,18 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
     4. [Stream Manipulators](stream-io.md#Stream-Manipulators)
     5. [Stream Error States](stream-io.md#Stream-Error-States)
     6. [`std::cin` and handling invalid input](stream-io.md#std-cin-and-handling-invalid-input)
-6. [File Processing](file-processing.md#File-Processing)
+8. [File Processing](file-processing.md#File-Processing)
     1. [Data Hierarchy](file-processing.md#Data-Hierarchy)
     2. [Files and Streams](file-processing.md#Files-and-Streams)
     3. [Sequential Files](file-processing.md#Sequential-Files)
     4. [Unformatted File I/O](file-processing.md#Unformatted-File-I/O)
     5. [Random Access Files](file-processing.md#Random-Access-Files)
-7. [References](#References)
-8. [Appendix](#Appendix)
+        1. [Creating a Random-Access File](file-processing.md#Creating-a-Random-Access-File)
+        2. [The reinterpret_cast Operator](file-processing.md#The-reinterpret_cast-Operator)
+        3. [Example Program](file-processing.md#Example-Program)
+    6. [Companion Code](file-processing.md#Companion-Code)
+9. [References](#References)
+10. [Appendix](#Appendix)
 
 
 
@@ -84,4 +88,4 @@ In order to jump to a specific topic, check the [detailed contents](#detailed-co
 
 ## Appendix
 
-The source code of the complete code examples included in this document is provided in the `doc_examples` directory.
+The complete source code of the examples included in this documentation is provided in the [`examples`](../examples) directory.
