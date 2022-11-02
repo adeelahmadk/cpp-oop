@@ -34,7 +34,7 @@ Encapsulation is achieved when each object keeps its state **private**, inside a
 
 So, the object manages its own state via methods — and no other class  can touch it unless explicitly allowed. If you want to communicate with  the object, you should use the methods provided. But (by default), you  can’t change the state.
 
-![Encapsulation Diagram](/home/adeel/workspace/learn/cxx/cpp-oop/assets/encap_cat_bg.png)
+![Encapsulation Diagram](../assets/encap_cat_bg.png)
 
 
 
@@ -42,7 +42,7 @@ So, the object manages its own state via methods — and no other class  can tou
 
 Abstraction can be thought of as a natural extension of encapsulation. Applying abstraction means that each object should **only** expose a high-level mechanism for using it. This mechanism should hide internal implementation details. It should only reveal operations relevant for the other objects.
 
-![Abstraction](/home/adeel/workspace/learn/cxx/cpp-oop/assets/abstract_phone_bg.png)
+![Abstraction](../assets/abstract_phone_bg.png)
 
 
 
@@ -52,7 +52,7 @@ Inheritance is the ability of one object to acquire some/all properties of anoth
 
 Objects are often very similar and share common logic. But they’re not **entirely** the same. So how do we **reuse** the common logic and extract the unique logic into a separate class? One way to achieve this is **inheritance**. It means that you create a (child) class by deriving from another (parent) class. This way, we form a hierarchy. The child class reuses all fields and methods of the parent class (common part) and can implement its own (unique part).
 
-![Inheritance Diagram](/home/adeel/workspace/learn/cxx/cpp-oop/assets/inherit_person_bg.png)
+![Inheritance Diagram](../assets/inherit_person_bg.png)
 
 
 
@@ -72,6 +72,6 @@ Choosing the appropriate function to call at execution time (rather than at comp
 
 Once a function is defined as `virtual` in the base class, its overridden copy in the derived class retains it's `virtual` status even if not declared explicitly.
 
-![Polymorphism Diagram](/home/adeel/workspace/learn/cxx/cpp-oop/assets/polymorph_shape_bg.png)
+![Polymorphism Diagram](../assets/polymorph_shape_bg.png)
 
 [^ Top](#Principles-of-OOP)
