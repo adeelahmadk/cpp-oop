@@ -4,7 +4,7 @@
 
 ## Index of Topics
 
-In order to jump to a specific topic, check the [detailed contents](#detailed-contents) below.
+In order to jump to a specific topic, check the [detailed contents](#detailed%20contents) below.
 
 | Topic                                                  | Description                                                  |
 | ------------------------------------------------------ | ------------------------------------------------------------ |

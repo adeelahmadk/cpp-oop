@@ -1213,7 +1213,7 @@ int main()
 
 ## Companion Code
 
-You can find the random access file example programs in [examples](../examples/RandAccessFile/README.md).
+You can find the random access file example programs in [examples](../examples/RandAccessFile).
 
 
 
