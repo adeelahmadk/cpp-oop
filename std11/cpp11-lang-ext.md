@@ -19,7 +19,7 @@
     12. [Inline namespaces](#Inline-namespaces)
     13. [User-defined literals](#User-defined-literals)
 2. [Classes](#Classes)
-    1. [`=default` and `=delete`](#=default-and-=delete )
+    1. [`=default` and `=delete`: Explicitly defaulted and deleted functions](#Explicitly-defaulted-and-deleted-functions )
     2. [Control of default move and copy](#Control-of-default-move-and-copy)
     3. [Delegating constructors](#Delegating-constructors)
     4. [In-class member initializers](#In-class-member-initializers)
@@ -679,7 +679,7 @@ using namespace Numerics::literals;
 
 
 
-### =default and =delete 
+### Explicitly defaulted and deleted functions 
 
 The common idiom of “prohibiting copying” can now be expressed directly:
 
