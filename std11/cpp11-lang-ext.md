@@ -15,7 +15,7 @@
     8. [`noexcept` to prevent exception propagation ](#`noexcept`-to-prevent-exception-propagation)
     9. [`constexpr`](#`constexpr`)
     10. [`nullptr` – a null pointer literal](#`nullptr`-a-null-pointer-literal)
-    11. [Copying and rethrowing exceptions](#Copying and rethrowing exceptions)
+    11. [Copying and rethrowing exceptions](#Copying-and-rethrowing-exceptions)
     12. [Inline namespaces](#Inline-namespaces)
     13. [User-defined literals](#User-defined-literals)
 2. [Classes](#Classes)
@@ -39,8 +39,6 @@
 
 
 ## General Features
-
-
 
 ### Type Deduction
 
@@ -1198,6 +1196,66 @@ f(ss);      // error; like an explicit constructor
 
 
 ## Other Types
+
+### `enum class` 
+
+The `enum class`es ("new `enum`s", "strong `enum`s") address three problems with traditional C++ enumerations:
+
+- Conventional `enum`s implicitly convert to an integer, causing errors when someone does not want an enumeration to act as an integer. 
+- Conventional `enum`s export their enumerators to the surrounding scope, causing name clashes. 
+- The underlying type of an `enum` cannot be specified, causing confusion, compatibility problems, and makes forward declaration impossible. 
+
+`enum class`es ("strong `enum`s") are strongly typed and scoped:
+
+```cpp
+enum Alert { green, yellow, orange, red }; // traditional enum
+enum class Color { red, blue };   // scoped and strongly typed enum
+																	// no export of enumerator names into enclosing scope     
+																	// no implicit conversion to int
+enum class TrafficLight { red, yellow, green };
+Alert a = 7;              // error (as ever in C++)
+Color c = 7;              // error: no int->Color conversion
+int a2 = red;             // ok: Alert->int conversion
+int a3 = Alert::red;      // error in C++98; ok in C++11
+int a4 = blue;            // error: blue not in scope
+int a5 = Color::blue;     // error: not Color->int conversion
+Color a6 = Color::blue;   // ok
+```
+
+As shown, traditional `enum`s work as usual, but you can now optionally qualify enumerators with the `enum` name
+
+The new `enum`s are "`enum class`" because they combine aspects of traditional enumerations (names values) with aspects of classes (scoped members and absence of conversions). This is the same name for this feature as when it was originally designed in [C++/CLI](http://www.ecma-international.org/publications/standards/Ecma-372.htm) before being proposed for ISO C++.
+
+Being able to specify the underlying type allows simpler interoperability and guaranteed sizes of enumerations:
+
+```cpp
+enum class Color : char { red, blue };  // compact representation
+enum class TrafficLight { red, yellow, green };  // by default, the underlying type is int
+enum E { E1 = 1, E2 = 2, Ebig = 0xFFFFFFF0U };   // how big is an E?
+											// (whatever the old rules say;
+											// i.e. "implementation defined")
+enum EE : unsigned long { EE1 = 1, EE2 = 2, EEbig = 0xFFFFFFF0U };   // now we can be specific
+```
+
+It also enables forward declaration of enums:
+
+```cpp
+enum class Color_code : char;     // (forward) declaration
+void foobar(Color_code* p);       // use of forward declaration
+// ...
+enum class Color_code : char { red, yellow, green, blue }; // definition
+```
+
+The underlying type must be one of the signed or unsigned integer types; the default is `int`.
+
+In the standard library, enum classes are used
+
+- For mapping systems specific error codes: In : `enum class errc;` 
+- For pointer safety indicators: In : `enum class pointer_safety { relaxed, preferred, strict };` 
+- For I/O stream errors: In : `enum class io_errc { stream = 1 };` 
+- For asynchronous communications error handling: In : `enum class  future_errc { broken_promise, future_already_retrieved,  promise_already_satisfied };` 
+
+Several of these have operators such as `==` defined.
 
 
 
