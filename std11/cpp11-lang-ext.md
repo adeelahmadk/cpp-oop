@@ -28,6 +28,8 @@
     5. [Override controls: `final`](#Override-controls-final)
     5. [Explicit conversion operators](#Explicit-conversion-operators)
 3. [Other Types](#Other-Types)
+    1. [`enum` class](#enum class)
+
 4. [Templates](#Templates)
 5. [Concurrency](#Concurrency)
 6. [Miscellaneous Language Features](#Miscellaneous-Language-Features)
