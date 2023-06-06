@@ -284,7 +284,7 @@ int main()
 }
 ```
 
-If you compile and (try to) link these two `.cpp` files, most compilers will generate **linker errors**.
+If you compile and (try to) link these two `.cpp` files, most compilers will generate **linker errors**.[^5,6^](#References)
 
 There are two solutions for this. 
 
@@ -313,7 +313,7 @@ std::ostream& operator<< (std::ostream& o, const Foo<int>& x){ /*...*/ }
 
 When you call the `operator+` or `operator<<` functions, this assumption causes the compiler to generate a call to the *non*-template functions, but the linker will give you an “undefined external” error because you never actually defined those *non*-template functions. The solution is to convince the compiler *while it is examining the class body proper* that the `operator+` and `operator<<` functions are themselves templates.
 
-There are several ways to do this; one simple approach is to **pre-declare** each template friend function *above* the definition of template class `Foo`:
+There are several ways to do this; one simple approach is to **pre-declare** each template friend function *above* the definition of template class `Foo`: [^7^](https://isocpp.org/wiki/faq/templates#template-friends)
 
 ```c++
 // pre-declare the template class itself
@@ -377,6 +377,7 @@ private:
 4. [Should implementation be included in .h file?](https://www.bogotobogo.com/cplusplus/template_declaration_definition_header_implementation_file.php)
 5. [How to avoid linker errors due to separate template function definition & declaration](https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl)
 6. [How can I avoid linker errors with my template classes?](https://isocpp.org/wiki/faq/templates#separate-template-class-defn-from-decl)
+6. [Why do I get linker errors when I use template friends?](https://isocpp.org/wiki/faq/templates#template-friends)
 7. [C++11 Language Extensions – Templates](https://isocpp.org/wiki/faq/cpp11-language-templates)
 
 

@@ -7,3 +7,5 @@ This repository aims to outline beginner level OOP concepts in C++ programming l
     - [C++03](./cpp03/README.md)
     - C++11 (future update)
 
+A separate section is dedicated to outline the new features introduced by the [C++11 standard](std11/README.md).
+
