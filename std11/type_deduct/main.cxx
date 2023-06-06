@@ -4,6 +4,8 @@
 #include <cmath>
 using std::cout;
 using std::endl;
+using std::scientific;
+using std::setprecision;
 
 int main (int argc, char *argv[])
 {
@@ -14,7 +16,7 @@ int main (int argc, char *argv[])
   cout << "x [" << sizeof(x) << " bytes] : " << x << endl;
   cout << "y [" << sizeof(y) << " bytes] : " << y << endl;
   cout << "z [" << sizeof(z) << " bytes] : "
-    << std::scientific << std::setprecision(5) << z << endl;
+    << scientific << setprecision(5) << z << endl;
 
   return 0;
 }
