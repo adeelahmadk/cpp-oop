@@ -12,20 +12,20 @@
     5. [Uniform initialization syntax and semantics](#Uniform-initialization-syntax-and-semantics)
     6. [Rvalue references and move semantics](#Rvalue-references-and-move-semantics)
     7. [Lambdas](#Lambdas)
-    8. [`noexcept` to prevent exception propagation ](#`noexcept`-to-prevent-exception-propagation)
-    9. [`constexpr`](#`constexpr`)
-    10. [`nullptr` – a null pointer literal](#`nullptr`-a-null-pointer-literal)
+    8. [`noexcept` to prevent exception propagation ](#noexcept-to-prevent-exception-propagation)
+    9. [`constexpr`](#constexpr)
+    10. [`nullptr` – a null pointer literal](#nullptr-a-null-pointer-literal)
     11. [Copying and rethrowing exceptions](#Copying-and-rethrowing-exceptions)
     12. [Inline namespaces](#Inline-namespaces)
     13. [User-defined literals](#User-defined-literals)
 2. [Classes](#Classes)
-    1. [`=default` and `=delete`](#`=default`-and-`=delete` )
+    1. [`=default` and `=delete`](#=default-and-=delete )
     2. [Control of default move and copy](#Control-of-default-move-and-copy)
     3. [Delegating constructors](#Delegating-constructors)
     4. [In-class member initializers](#In-class-member-initializers)
     5. [Inherited constructors ](#Inherited-constructors)
-    5. [Override controls: `override` ](#Override-controls-`override`)
-    5. [Override controls: `final`](#Override-controls-`final`)
+    5. [Override controls: `override` ](#Override-controls-override)
+    5. [Override controls: `final`](#Override-controls-final)
     5. [Explicit conversion operators](#Explicit-conversion-operators)
 3. [Other Types](#Other-Types)
 4. [Templates](#Templates)
@@ -400,7 +400,7 @@ To specify a lambda you must provide
 
 
 
-### `noexcept` to prevent exception propagation 
+### noexcept to prevent exception propagation 
 
 If a function cannot throw an exception or if the program isn’t written to handle exceptions thrown by a function, that function can be declared `noexcept`. For example:
 
@@ -441,7 +441,7 @@ It is typically a bad idea to have a move operation throw, so declare those `noe
 
 
 
-### `constexpr`
+### constexpr
 
 The `constexpr` mechanism
 
@@ -500,7 +500,7 @@ Please note that `constexpr` is not a general purpose replacement for `const` (o
 
 
 
-### `nullptr` a null pointer literal
+### nullptr a null pointer literal
 
 `nullptr` is a literal denoting the null pointer; it is not an integer:
 
@@ -677,7 +677,7 @@ using namespace Numerics::literals;
 
 
 
-### `=default` and `=delete` 
+### =default and =delete 
 
 The common idiom of “prohibiting copying” can now be expressed directly:
 
@@ -1067,7 +1067,7 @@ void test()
 
 
 
-### Override controls: `override` 
+### Override controls: override 
 
 No special keyword or annotation is needed for a function in a  derived class to override a function in a base class. For example:
 
@@ -1113,7 +1113,7 @@ int override = 7;   // not recommended
 
 
 
-### Override controls: `final` 
+### Override controls: final 
 
 Sometimes, a programmer wants to prevent a virtual function from being overridden. This can be achieved by adding the specifier `final`. For example:
 
@@ -1197,7 +1197,7 @@ f(ss);      // error; like an explicit constructor
 
 ## Other Types
 
-### `enum class` 
+### enum class 
 
 The `enum class`es ("new `enum`s", "strong `enum`s") address three problems with traditional C++ enumerations:
 
