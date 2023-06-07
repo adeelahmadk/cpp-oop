@@ -112,7 +112,7 @@ This notion has been popular in generic programming under the label “typeof”
 ### Range-for statement 
 A range for statement allows you to iterate through a “range”, which is anything you can iterate through like an STL-sequence defined by a begin() and end(). All standard containers can be used as a range, as can a std::string, an initializer list, an array, and anything for which you define begin() and end(), e.g. an istream. For example:
 
-```
+```cpp
 void f(vector<double>& v)
 {
   for (auto x : v) cout << x << '\n';

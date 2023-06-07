@@ -50,6 +50,17 @@ We have a [document](cpp11-lang-ext.md) that outlines the main language extensio
 
 
 
+## Code Examples
+
+
+
+| Example                      | Concept                |
+| ---------------------------- | ---------------------- |
+| [type_deduct](./type_deduct) | `auto`: Type deduction |
+| [range_for](./range_for)     | Range-for statement    |
+|                              |                        |
+|                              |                        |
+
 ## Where else can I read about C++11? 
 
 The amount of information about C++11 is increasing as most C++  implementations provide the new language features and libraries. Here is a short list of sources:
