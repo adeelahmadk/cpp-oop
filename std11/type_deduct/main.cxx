@@ -1,3 +1,13 @@
+/**
+* @file type_deduct/main.cxx
+* @author Adeel Ahmad (6880680+adeelahmadk@users.noreply.github.com)
+* @brief Example demonstrating type deduction with auto
+* @version 0.1
+* @date 2023-06-07
+*
+* @copyright Copyright (c) 2023
+*
+*/
 #include <ios>
 #include <iostream>
 #include <iomanip>

@@ -1,8 +1,17 @@
+/**
+* @file range_for/main.cxx
+* @author Adeel Ahmad (6880680+adeelahmadk@users.noreply.github.com)
+* @brief Example demonstrating range-for statement
+* @version 0.1
+* @date 2023-06-04
+*
+* @copyright Copyright (c) 2023
+*
+*/
 #include <ios>
 #include <iostream>
 #include <iomanip>
 #include <vector>
-// #include <cmath>
 using std::cout;
 using std::endl;
 using std::vector;
