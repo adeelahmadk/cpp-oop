@@ -88,6 +88,44 @@ template<class T, class U> void multiply(const vector<T>& vt, const vector<U>& v
 ```
 The type of tmp should be what you get from multiplying a T by a U, but exactly what that is can be hard for the human reader to figure out, though of course the compiler knows once it has figured out what particular T and U it is dealing with.
 
+Using auto promotes good object-oriented practices, such as _preferring interfaces over implementations_. The lesser the number of types specified the more generic the code is and more open to future changes, which is a fundamental principle of object-oriented programming.
+
+```cpp
+auto v = std::vector<int>{ 1, 2, 3 };
+int size1 = v.size();  // implicit conversion, possible loss of data
+auto size2 = v.size();
+auto size3 = int{ v.size() };  // error, narrowing conversion
+```
+
+It is very often that even though we explicitly specify the type, we don't actually care about it. A very common case is with iterators, but one can think of many more. When you want to iterate over a range, you don't care about the actual type of the iterator. You are only interested in the iterator itself; so, using auto saves time used for typing possibly long names
+
+```cpp
+std::map<int, std::string> m;
+for (std::map<int,std::string>::const_iterator it = m.cbegin();
+     it != m.cend(); ++it)
+{ /*...*/ }
+
+// using auto simplifies the code
+for (auto it = m.cbegin(); it != m.cend(); ++it)
+{ /*...*/ }
+```
+
+The auto specifier is only a placeholder for the type, not for the const/volatile and references specifiers.
+
+```cpp
+class foo {
+  int x_;
+public:
+  foo(int const x = 0) :x_{ x } {}
+  int& get() { return x_; }
+};
+
+foo f(42);
+auto x = f.get();
+x = 100;
+std::cout << f.get() << std::endl; // prints 42
+```
+
 The old meaning of auto (namely “this is a local variable”) is now illegal.
 
 
@@ -225,11 +263,11 @@ int b(foo); // variable definition or function declaration
 
 It can be hard to remember the rules for initialization and to choose the best way.
 
-The C++11 solution is to allow {}-initializer lists for all initialization:
+The **C++11 solution** is to allow {}-initializer lists for all initialization:
 ```cpp
-X x1 = X{1,2}; 
+X x1 = X{1,2};  // copy list initialization
 X x2 = {1,2};   // the = is optional
-X x3{1,2}; 
+X x3{1,2};			// direct list initialization
 X* p = new X{1,2}; 
 struct D : X {
   D(int x, int y) :X{x,y} { /* ... */ };
@@ -240,7 +278,10 @@ struct S {
 };
 ```
 
+When the brace-initialization form `{}` is used directly `X x1{1,2}` it's called _direct list initialization_ and when used with assignment operator `X x2 = {1,2}` it's called _copy list initialization_.
+
 Importantly, X{a} constructs the same value in every context, so that {}-initialization gives the same result in all places where it is legal. For example:
+
 ```cpp
 X x{a}; 
 X* p = new X{a};
@@ -250,6 +291,47 @@ return {a};       // function return value (function returning X)
 ```
 
 C++11 uniform initialization is not perfectly uniform, but it’s very nearly so. C++11’s {} initialization syntax and semantics provide a much simpler and consistent way to perform initialization, that is also more powerful (e.g., `vector<int> v = { 1, 2, 3, 4 }`) and safer (e.g., {} does not allow narrowing conversions). Prefer initializing using {}.
+
+Aggregate and POD types could be initialized with brace-initialization.
+
+```cpp
+struct bar { int a_; double b_; };
+bar b{ 42, 1.2 };
+
+struct S
+{
+  int x;
+
+  struct Foo
+  {
+    int i;
+    int j;
+    int a[3];
+  } b;
+};
+S s1 = {1, {2, 3, {4, 5, 6}}};
+S s2 = {1, 2, 3, 4, 5, 6};  // same, but with brace elision
+S s3{1, {2, 3, {4, 5, 6}}}; // same, using direct-list-initialization syntax
+int ar[] = {1, 2, 3}; // ar is int[3]
+char cr[3] = {'a'}; // array initialized as {'a', '\0', '\0'}
+int ar2d1[2][2] = {{1, 2}, {3, 4}}; // fully-braced
+																		// 2D array: {1, 2}
+																		//     			 {3, 4}
+int ar2d2[2][2] = {1, 2, 3, 4}; // brace elision:
+																//				{1, 2}
+																//       	{3, 4}
+```
+
+An aggregate is one of the following types:
+
+- array type
+- class type (typically, struct or union), that has
+    - no user-declared constructors
+    - no user-provided, inherited, or explicit constructors
+    - no virtual member functions
+    - no default member initializers
+
+
 
 ### Rvalue references and move semantics 
 
@@ -263,6 +345,32 @@ int i = 0;
 incr(i);    // i becomes 1
 incr(0);    // error: 0 in not an lvalue
 ```
+
+An `rvalue` is an expression that is not an `lvalue`. Commonly seen `rvalues` include literals and the return value of functions and operators. `rvalues` aren’t identifiable (by an object or function, meaning they have to be used immediately), and only exist within the  scope of the expression in which they are used.
+
+```cpp
+int return5()
+{
+  return 5;
+}
+
+int main()
+{
+  int x{ 5 }; // 5 is an rvalue expression
+  const double d{ 1.2 }; // 1.2 is an rvalue expression
+
+  int y { x }; // x is a modifiable lvalue expression
+  const double e { d }; // d is a non-modifiable lvalue expression
+  int z { return5() }; // return5() is an rvalue expression (since the result is returned by value)
+
+  int w { x + 1 }; // x + 1 is an rvalue expression
+  int q { static_cast<int>(d) }; // the result of static casting d to an int is an rvalue expression
+
+  return 0;
+}
+```
+
+For a deeper insight into this discussion, refer to this post about [value categories](https://www.learncpp.com/cpp-tutorial/value-categories-lvalues-and-rvalues/).
 
 So far, so good, but consider
 
@@ -303,7 +411,7 @@ X&& rr2 = a;    // error: bind a is an lvalue
 
 The idea behind a move assignment is that *instead of making a copy, it simply takes the representation from its source and replaces it with a cheap default*. For example, for `string`s `s1=s2` using the move assignment would not make a copy of `s2`’s characters; instead, it would just let `s1` treat those characters as its own and somehow delete `s1`’s old characters (maybe by leaving them in `s2`, which presumably is just about to be destroyed).
 
-How do we know whether it’s ok to simply move from a source? We tell the compiler:
+How do we know whether it’s ok to simply move from a source? We tell the compiler: *with the utility function `std::move` from the Standard Library*. It is used to convert an lvalue into an rvalue.
 
 ```cpp
 template<class T>

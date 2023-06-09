@@ -24,3 +24,8 @@ BUILD_OPTS="-std=c++11 -Wall"
 echo "building to $CURR_DIRNAME"
 # building example code
 $CXX $BUILD_OPTS -o $BUILD_STD11/$CURR_DIRNAME main.cxx
+
+[ "$?" -eq 0 ] && {
+  printf "%s\n\n" "program built successfully, executing binary..."
+  $BUILD_STD11/$CURR_DIRNAME
+}

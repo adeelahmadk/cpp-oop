@@ -8,7 +8,6 @@
 * @copyright Copyright (c) 2023
 *
 */
-#include <ios>
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -19,6 +18,7 @@ using std::fixed;
 using std::setprecision;
 
 struct Point {
+public:
   int x, y;
   Point(int a=0, int b=0) : x(a), y(a) {}
 };
@@ -40,7 +40,7 @@ int main (int argc, char *argv[])
   cout << "y  [" << sizeof(y) << " bytes] : " << y << endl;
   cout << "z  [" << sizeof(z) << " bytes] : "
     << scientific << setprecision(5) << z << endl;
-  cout << "ed [" << sizeof(z) << " bytes] : " 
+  cout << "ed [" << sizeof(ed) << " bytes] : "
     << fixed << setprecision(2) << ed << endl;
 
   return 0;

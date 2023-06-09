@@ -52,14 +52,30 @@ We have a [document](cpp11-lang-ext.md) that outlines the main language extensio
 
 ## Code Examples
 
+Each example has been compiled and tested with `gcc` (version 9.4.0). Example directories contain a bash script to build and run. In case bash shell is not available, then examples can be compiled with the following command:
 
+```shell
+cd <example_directory>
+# for gcc
+g++ -std=c++11 -Wall -o type_deduct main.cxx
+./type_deduct
+# for clang
+clang++ -std=c++11 -Wall -o type_deduct main.cxx
+./type_deduct
+# for mingw
+g++.exe -std=c++11 -Wall -o type_deduct.exe main.cxx
+.\type_deduct.exe
+```
 
-| Example                      | Concept                |
-| ---------------------------- | ---------------------- |
-| [type_deduct](./type_deduct) | `auto`: Type deduction |
-| [range_for](./range_for)     | Range-for statement    |
-|                              |                        |
-|                              |                        |
+List of examples is as listed below:
+
+| Example                      | Concept                                                      |
+| ---------------------------- | ------------------------------------------------------------ |
+| [type_deduct](./type_deduct) | `auto`: Type deduction                                       |
+| [range_for](./range_for)     | Range-for statement                                          |
+| [init_list](./init_list)     | List initialization, uniform initialization syntax & semantics |
+| [rvalue_ref](./rvalue_ref)   | `rvalue` reference and move semantics                        |
+|                              |                                                              |
 
 ## Where else can I read about C++11? 
 
