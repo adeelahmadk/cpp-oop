@@ -8,7 +8,6 @@
 * @copyright Copyright (c) 2023
 *
 */
-#include <initializer_list>
 #include <iostream>
 #include <iomanip>
 #include <vector>
