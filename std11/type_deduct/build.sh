@@ -9,7 +9,7 @@ while [[ ! -f "$ENV" ]]; do
   ENV="../$ENV"
 done
 
-[[ -z "$ENV" ]] && { echo "not in the repo dir!" >&2; exit 1; }
+[[ ! -f "$ENV" ]] && { echo "not in the repo dir!" >&2; exit 1; }
 
 ENV=$(realpath $ENV)
 source "$ENV"
@@ -25,7 +25,7 @@ echo "building to $CURR_DIRNAME"
 # building example code
 $CXX $BUILD_OPTS -o $BUILD_STD11/$CURR_DIRNAME main.cxx
 
-[ "$?" -eq 0 ] && {
+[ "$?" -eq 0 ] && { 
   printf "%s\n\n" "program built successfully, executing binary..."
   $BUILD_STD11/$CURR_DIRNAME
 }

@@ -9,7 +9,7 @@ while [[ ! -f "$ENV" ]]; do
   ENV="../$ENV"
 done
 
-[[ -z "$ENV" ]] && { echo "not in the repo dir!" >&2; exit 1; }
+[[ ! -f "$ENV" ]] && { echo "not in the repo dir!" >&2; exit 1; }
 
 ENV=$(realpath $ENV)
 source "$ENV"
